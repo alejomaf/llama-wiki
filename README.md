@@ -1,8 +1,8 @@
 # LLaMA Wiki en Español
 
-Este proyecto es una wiki en formato HTML y CSS desarrollada para explicar el modelo LLaMA (Large Language Model Meta AI) en español. LLaMA es un modelo de lenguaje de gran escala desarrollado por OpenAI que utiliza técnicas avanzadas de aprendizaje a partir de pocas muestras para proporcionar respuestas precisas y coherentes a una amplia gama de preguntas e instrucciones.
+Este proyecto es una wiki en formato HTML y CSS desarrollada para explicar el modelo LLaMA (Large Language Model Meta AI) en español. LLaMA es un modelo de lenguaje de gran escala desarrollado por Meta que utiliza técnicas avanzadas de aprendizaje a partir de pocas muestras para proporcionar respuestas precisas y coherentes a una amplia gama de preguntas e instrucciones.
 
-La wiki se basa en el artículo científico de OpenAI: https://arxiv.org/pdf/2302.13971.pdf
+La wiki se basa en el artículo científico de Meta: https://arxiv.org/pdf/2302.13971.pdf
 
 ## Índice
 

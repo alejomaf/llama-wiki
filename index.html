@@ -16,6 +16,7 @@
             <li><a href="#contexto-actual">Contexto actual</a></li>
             <li><a href="#arquitectura-componentes">LLaMA: Arquitectura y componentes</a></li>
             <li><a href="#evaluacion">Evaluación experimental</a></li>
+            <li><a href="#consideraciones">Otras consideraciones</a></li>
             <li><a href="#aplicaciones">Aplicaciones</a></li>
             <li><a href="#conclusiones">Conclusiones y trabajos futuros</a></li>
             <li><a href="#preguntas">Preguntas</a></li>
@@ -80,13 +81,13 @@
                 <p>
                     Una de las principales características de LLaMA es que su entrenamiento se limita a fuentes de datos públicas compatibles con "open sourcing". El conjunto de datos está compuesto por las siguientes fuentes:
                     <ul>
-                        <li>English CommonCrawl (67%): repositorio abierto que contiene información obtenida a través de web crawling. De esta fuente se utilizan datos de 2017 a 2020, y son procesados con el pipeline CCNet. Con este procesado se eliminan duplicados a nivel de línea, se realiza identificación de idioma utilizando clasificadores para eliminar contenido no inglés y se filtra el contenido de baja calidad usando modelos de n-gramas.</li>
-                        <li>C4 (15%): dataset ya pre-procesado basado también en CommonCrawl. El procesado es similar al realizado para el anterior dataset con CCNet, pero esta vez el filtrado de calidad se realiza utilizando heurísticas.</li>
-                        <li>Github (4.5%): dataset abierto de Google BigQuery. Para mantenerse en línea con el uso de solo datos accesibles públicamente, solo se utilizan proyectos bajo las licencias de Apache, BSD y MIT. En este caso se eliminan los duplicados a nivel de archivo y el filtrado de calidad se realiza usando heurísticas. También se eliminan partes estructurales de los archivos que no proporcionan información relevante como los headers.</li>
-                        <li>Wikipedia (4.5%): dumps de Wikipedia del periodo Junio-Agosto de 2022, en más de 20 idiomas. Para estandarizar el formato, se eliminan los hyperlinks, comentarios, etc.</li>
-                        <li>Gutenberg y Books3 (4.5%): ambos datasets relacionados con libros disponibles en el dominio público. Los duplicados son eliminados a nivel de libro si existe más de un 90% de coincidencia entre ellos.</li>
-                        <li>ArXiv (2.5%): archivos LaTeX de contenido científico. En el proceso de estandarización se elimina todo antes de la primera sección y la bibliografía, además de los comentarios, definiciones y macros utilizados por el autor.</li>
-                        <li>Stack Exchange (2%): conjuntos de preguntas y respuestas en las 28 páginas más grandes. En la estandarización se elimina toda lo relacionado con el HTML de la página y además se ordenan las preguntas por puntuación.</li>
+                        <li><b>English CommonCrawl (67%)</b>: repositorio abierto que contiene información obtenida a través de web crawling. De esta fuente se utilizan datos de 2017 a 2020, y son procesados con el pipeline CCNet. Con este procesado se eliminan duplicados a nivel de línea, se realiza identificación de idioma utilizando clasificadores para eliminar contenido no inglés y se filtra el contenido de baja calidad usando modelos de n-gramas.</li>
+                        <li><b>C4 (15%)</b>: dataset ya pre-procesado basado también en CommonCrawl. El procesado es similar al realizado para el anterior dataset con CCNet, pero esta vez el filtrado de calidad se realiza utilizando heurísticas.</li>
+                        <li><b>Github (4.5%)</b>: dataset abierto de Google BigQuery. Para mantenerse en línea con el uso de solo datos accesibles públicamente, solo se utilizan proyectos bajo las licencias de Apache, BSD y MIT. En este caso se eliminan los duplicados a nivel de archivo y el filtrado de calidad se realiza usando heurísticas. También se eliminan partes estructurales de los archivos que no proporcionan información relevante como los headers.</li>
+                        <li><b>Wikipedia (4.5%)</b>: dumps de Wikipedia del periodo Junio-Agosto de 2022, en más de 20 idiomas. Para estandarizar el formato, se eliminan los hyperlinks, comentarios, etc.</li>
+                        <li><b>Gutenberg y Books3 (4.5%)</b>: ambos datasets relacionados con libros disponibles en el dominio público. Los duplicados son eliminados a nivel de libro si existe más de un 90% de coincidencia entre ellos.</li>
+                        <li><b>ArXiv (2.5%)</b>: archivos LaTeX de contenido científico. En el proceso de estandarización se elimina todo antes de la primera sección y la bibliografía, además de los comentarios, definiciones y macros utilizados por el autor.</li>
+                        <li><b>Stack Exchange (2%)</b>: conjuntos de preguntas y respuestas en las 28 páginas más grandes. En la estandarización se elimina toda lo relacionado con el HTML de la página y además se ordenan las preguntas por puntuación.</li>
                     </ul>
                 </p>
                 <p>
@@ -100,9 +101,9 @@
                     Al igual que la mayoría de los grandes modelos de lenguaje actuales, la arquitectura de LLaMA se basa en un transformador. A esta arquitectura original se le aplican varias modificaciones para optimizarla, proviententes de distintos origenes:
 
                     <ul>
-                        <li>Pre-normalización (GPT3): en vez de normalizar la salida, se normalizan las entradas de cada sub-capa del transformador.</li>
-                        <li>SwiGLU (PaLM): la función de activación ReLU se sustituye por la SwiGLU, para mejorar el rendimiento de la red.</li>
-                        <li>Embeddings rotatorios (GPTNeo): los embeddings de posición absoluta propuestos en la arquitectura original se sustituyen por Rotary Positional Embeddings (RoPE) en cada capa de la red. </li>
+                        <li><b>Pre-normalización (GPT3)</b>: en vez de normalizar la salida, se normalizan las entradas de cada sub-capa del transformador.</li>
+                        <li><b>SwiGLU (PaLM)</b>: la función de activación ReLU se sustituye por la SwiGLU, para mejorar el rendimiento de la red.</li>
+                        <li><b>Embeddings rotatorios (GPTNeo)</b>: los embeddings de posición absoluta propuestos en la arquitectura original se sustituyen por Rotary Positional Embeddings (RoPE) en cada capa de la red. </li>
                     </ul>
                 </p>
             </article>
@@ -123,43 +124,78 @@
             <article id="metricas-evaluacion">
                 <h3>Métricas de evaluación</h3>
                 <p>
-                    La evaluación de LLaMA se lleva a cabo utilizando diversas métricas que miden la calidad de las respuestas generadas por el modelo y su capacidad para adaptarse a nuevas tareas y dominios. Estas métricas incluyen:
+                    Como es común en la evaluación de modelos de lenguaje, los resultados se obtuvieron realizando tanto zero-shot learning como few-shot learning. En zero-shot, se proporciona al modelo una descripción de la tarea y un ejemplo de test. El modelo debe entonces proporcionar una respuesta u ordenar las respuestas proporcionadas, dependiendo de la tarea. Few-shot es muy parecido, pero se le proporciona también al modelo algunos ejemplos de la tarea.
                 </p>
-                <ul>
-                    <li>
-                        <strong>Precisión:</strong> Mide la proporción de respuestas correctas generadas por el modelo en comparación con las respuestas esperadas. La precisión es una medida importante de la efectividad de un modelo de lenguaje y su capacidad para proporcionar respuestas precisas y útiles.
-                    </li>
-                    <li>
-                        <strong>Recall (Exhaustividad):</strong> Mide la proporción de respuestas relevantes recuperadas por el modelo en comparación con el total de respuestas relevantes posibles. La exhaustividad es una medida importante de la capacidad del modelo para identificar y proporcionar información relevante en una tarea dada.
-                    </li>
-                    <li>
-                        <strong>F1 score:</strong> Combina la precisión y la exhaustividad en una sola métrica, dando una medida general de la calidad y la utilidad de las respuestas generadas por el modelo.
-                    </li>
-                    <li>
-                        <strong>BLEU:</strong> Mide la similitud entre las respuestas generadas por el modelo y las respuestas de referencia, teniendo en cuenta la coincidencia de palabras y frases. BLEU es una métrica comúnmente utilizada en la evaluación de sistemas de traducción automática y generación de texto.
-                    </li>
-                </ul>
                 <p>
                     Estas métricas proporcionan una evaluación cuantitativa del rendimiento de LLaMA en diversas tareas y dominios, y permiten comparaciones con otros modelos de lenguaje a gran escala.
                 </p>
             </article>
             <article id="resultados-comparaciones">
                 <h3>Resultados y comparaciones</h3>
+                <!-- TODO: poner tablas de resultados y comentarlas -->
                 <p>
-                    LLaMA demuestra un rendimiento sólido en una amplia gama de tareas y dominios, superando a otros modelos de lenguaje a gran escala en términos de precisión, exhaustividad y F1 score. Estas mejoras en el rendimiento se deben en gran parte a la capacidad de LLaMA para adaptarse rápidamente a nuevas tareas y dominios mediante el ajuste de instrucción y el metaprendizaje.
+                    El modelo se evaluó siguiendo una gran variedad de tareas y problemas, y se comparó con los modelos de lenguaje más prominentes como GPT-3, Gopher, Chinchilla o PaLM. A continuación se listan todas las pruebas.
                 </p>
+                    <h4>Razonamiento de Sentido Común</h4>
+                    <p>
+                        Se utilizaron benchmarks de BoolQ, PIQA, SIQA, HellaSwag, WinoGrande, ARC y OpenBookQA. Incluyen tanto tareas como preguntas multi-repuesta.
+                    </p>
+
+                    <h4>Preguntas a Libro Cerrado</h4>
+                    <p>
+                        Se utilizaron benchmarks de Natural Questions y TriviaQA. Al ser preguntas a libro cerrado, los modelos no tienen acceso a documentos que contengan evidencia de las respuestas a las preguntas. 
+                    </p>
+
+                    <h4>Comprensión Lectora</h4>
+                    <p>
+                        Se utilizaron benchmarks de RACE, que contiene preguntas de comprensión lectora para alumnos de instituto.
+                    </p>
+
+                    <h4>Razonamiento Matemático</h4>
+                    <p>
+                        Se utilizaron benchmarks de MATH y GSM8k, que contienen preguntas de razonamiento matemático orientadas a alumnos de instituto.
+                    </p>
+
+                    <h4>Generación de Código</h4>
+                    <p>
+                        Se utilizaron benchmarks de HumanEval y MBPP. En estas tareas el modelo recibe una descripción del programa a realizar y ejemplos de entradas y salidas del programa. El modelo tiene entonces que generar código Python que pase todos los casos de test del problema. 
+                    </p>
+
+                    <h4>Massive Multitask Language Understanding (MMLU)</h4>
+                    <p>
+                        El benchmark MMLU contiene conjuntos de preguntas multi-respuesta sobre una variedad de temas. 
+
+
+                        En este benchmark también se evaluó la utilidad del instruction finetuning. 
+                    </p>
+
                 <p>
-                    Además, LLaMA muestra una notable capacidad de generalización a partir de pocas muestras, lo que le permite aprender y realizar predicciones precisas con un número limitado de ejemplos de entrenamiento. Esto es especialmente útil en aplicaciones donde los datos de entrenamiento son escasos o difíciles de obtener, y donde es crucial la capacidad de aprender rápidamente a partir de información limitada.
+                    LLaMA demuestra un rendimiento sólido en una amplia gama de tareas y dominios, superando a otros modelos de lenguaje a gran escala. Estas mejoras en el rendimiento se deben en gran parte a la capacidad de LLaMA para adaptarse rápidamente a nuevas tareas y dominios mediante el ajuste de instrucción y el metaprendizaje.
                 </p>
                 <p>
                     En comparación con otros modelos de lenguaje a gran escala, como GPT-4, LLaMA también demuestra una mayor robustez frente a las instrucciones ambiguas o poco claras. Gracias a su enfoque en el ajuste de instrucción y el metaprendizaje, LLaMA es capaz de generar respuestas más coherentes y útiles en situaciones en las que otros modelos podrían tener dificultades para comprender la intención del usuario o proporcionar información relevante.
                 </p>
                 <p>
-                    Los resultados obtenidos en la evaluación experimental de LLaMA no solo destacan el potencial del modelo en una amplia variedad de aplicaciones, sino que también proporcionan información valiosa sobre las áreas en las que se pueden realizar mejoras futuras. Al analizar el rendimiento de LLaMA en diferentes tareas y dominios, los investigadores pueden identificar las limitaciones del modelo y desarrollar enfoques innovadores para abordar estas limitaciones y mejorar aún más el rendimiento de LLaMA en el futuro.
+                    Los resultados obtenidos en la evaluación experimental de LLaMA no solo destacan el potencial del modelo en una amplia variedad de aplicaciones, sino que también proporcionan información valiosa sobre las áreas en las que se pueden realizar mejoras futuras. Al analizar el rendimiento de LLaMA en diferentes tareas y dominios, los investigadores pueden identificar las limitaciones del modelo y desarrollar enfoques innovadores para abordar estas limitaciones y mejorar aún más el rendimiento de <i>LLaMA</i> en el futuro.
                 </p>
             </article>
         </section>            
-        
+        <section id="consideraciones">
+            <h2>Otras consideraciones</h2>
+            <article id="bias">
+                <h3>Bias, Toxicidad y Desinformación</h3>
+                <p>
+                    
+                </p>
+            </article>
+
+            <article id="carbon">
+                <h3>Huella de Carbono</h3>
+                <p>
+                    
+                </p>
+            </article>
+        </section>
         <section id="aplicaciones">
             <h2>Aplicaciones</h2>
             <article id="aplicacion-robotica">

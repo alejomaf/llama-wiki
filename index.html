@@ -95,6 +95,7 @@
             </article>
             <article id="arquitectura">
                 <h3>Arquitectura</h3>
+                <!-- TODO: Explicar arquitectura original -->
                 <p>
                     Al igual que la mayoría de los grandes modelos de lenguaje actuales, la arquitectura de LLaMA se basa en un transformador. A esta arquitectura original se le aplican varias modificaciones para optimizarla, proviententes de distintos origenes:
 
@@ -108,13 +109,11 @@
             <article id="implementacion">
                 <h3>Implementación</h3>
                 <p>
-                    LLaMA se implementa utilizando bibliotecas y marcos de trabajo populares de aprendizaje profundo, lo que facilita su adopción y uso por parte de la comunidad de investigadores. El modelo se entrena utilizando una combinación de aprendizaje supervisado y auto-supervisado, y se ajusta a nuevas tareas mediante ajuste de instrucción.
+                    Para el entrenamiento del modelo se hace uso del optimizador AdamW, junto con un cosine learning rate schedule. Esto hace que la tasa de aprendizaje pase de muy alta a muy baja rápidamente a medida que avanzan los epochs, para así volver a un valor alto. Este proceso se va repitiendo periódicamente. Se hace también uso de otras técnicas como el weight decay, gradient clipping y warmup steps. 
                 </p>
+
                 <p>
-                    La implementación de LLaMA también incluye medidas para garantizar la privacidad y la seguridad de los datos. Estas medidas incluyen la eliminación de datos sensibles del conjunto de datos de entrenamiento, el uso de técnicas de anonimización para proteger la identidad de los usuarios y la implementación de mecanismos de control de acceso para garantizar que solo los usuarios autorizados puedan interactuar con el modelo. Además, la implementación de LLaMA sigue las mejores prácticas en términos de transparencia y ética en la investigación de inteligencia artificial, lo que incluye compartir el código fuente y los detalles de implementación con la comunidad científica.
-                </p>
-                <p>
-                    Como modelo de código abierto, LLaMA fomenta la colaboración y la innovación en la comunidad de investigadores, permitiendo a los científicos estudiar, comprender y mejorar el modelo. La implementación abierta también facilita la adaptación de LLaMA a una amplia gama de aplicaciones y dominios, incluidos la robótica, la salud, la enseñanza y la vida cotidiana, lo que tiene el potencial de impulsar el desarrollo de aplicaciones de inteligencia artificial más eficientes y eficaces.
+                    En cuanto al software desarrollado para el entrenamiento del modelo, se hace uso de distintas técnicas para hacer la implementación más eficiente. Una de ellas es utilizar una implementación muy eficiente de la multi-head attention, que reduce tanto el uso de memoria como el tiempo de ejecución. También se reducen el número de activaciones calculadas durante el backward pass con el uso de checkpointing. Con esto, se evita siempre que se pueda calcular las activaciones más computacionalmente costosas. Por último se intenta solapar también el cálculo de las activaciones con las comunicaciones entre las GPUs. 
                 </p>
             </article>
         </section>            

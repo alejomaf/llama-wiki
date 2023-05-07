@@ -153,12 +153,12 @@
                             <figcaption><i>Fig. 2: Resultados en tareas de Razonamiento de Sentido Común.</i></figcaption>
                         </figure>
 
-                        LLaMA consigue el mejor rendimiento en zero-shot en todos los benchmarks excepto BoolQ y WinoGrande.  
+                        LLaMA consigue el mejor rendimiento en zero-shot en todos los benchmarks excepto BoolQ y WinoGrande, solo perdiendo contra PaLM-540B. Consistentemente consigue resultados mejores que otros modelos de considerablemente mayor tamaño como GPT-3 (175B) o Gopher-280B.  
                     </p>
 
                     <h4>Preguntas a Libro Cerrado</h4>
                     <p>
-                        Se utilizaron benchmarks de Natural Questions y TriviaQA. Al ser preguntas a libro cerrado, los modelos no tienen acceso a documentos que contengan evidencia de las respuestas a las preguntas. 
+                        Se utilizaron benchmarks de NaturalQuestions y TriviaQA. Al ser preguntas a libro cerrado, los modelos no tienen acceso a documentos que contengan evidencia de las respuestas a las preguntas. 
 
                         <figure>
                             <img src="imgs/natural-questions.png" alt="Resultados en NaturalQuestions">
@@ -168,6 +168,8 @@
                             <img src="imgs/triviaqa.png" alt="Resultados en TriviaQA">
                             <figcaption><i>Fig. 4: Resultados en TriviaQA.</i></figcaption>
                         </figure>
+
+                        En ambos benchmarks, LLaMA supera al resto de modelos. Cabe destacar también que incluso LLaMA-13B consigue resultados al nivel del estado del arte, pese a ser 5-10x más pequeño. 
                     </p>
 
                     <h4>Comprensión Lectora</h4>
@@ -178,6 +180,8 @@
                             <img src="imgs/comprension-lectora.png" alt="Resultados en Comprensión Lectora">
                             <figcaption><i>Fig. 5: Resultados en Comprensión Lectora.</i></figcaption>
                         </figure>
+
+                        En este benchmark LLaMA-65B es competitivo con PaLM-540B, obteniendo resultados similares. Además, LLaMA-13B consigue superar a GPT-3 en ambas pruebas.
                     </p>
 
                     <h4>Razonamiento Matemático</h4>
@@ -188,6 +192,8 @@
                             <img src="imgs/razonamiento-matematico.png" alt="Resultados en Razonamiento Matemático">
                             <figcaption><i>Fig. 6: Resultados en Razonamiento Matemático.</i></figcaption>
                         </figure>
+
+                        En este caso los resultados se comparan también con Minerva, una serie de modelos PaLM que han sido ajustados (finetuned) en datos matemáticos. LLaMA-65B es capaz de obtener notablemente mejores resultados que PaLM-62B e incluso superar a Minerva-62B en GSM8k usando <i>maj1@k</i> (evaluaciones con majority voting).   
                     </p>
 
                     <h4>Generación de Código</h4>
@@ -198,6 +204,9 @@
                             <img src="imgs/generacion-codigo.png" alt="Resultados en Generación de Código">
                             <figcaption><i>Fig. 7: Resultados en Generación de Código.</i></figcaption>
                         </figure>
+
+
+                        De nuevo, LLaMA es capaz de superar a otros modelos de mucho mayor tamaño en casi todas las pruebas. 
                     </p>
 
                     <h4>Massive Multitask Language Understanding (MMLU)</h4>
@@ -209,7 +218,9 @@
                             <figcaption><i>Fig. 8: Resultados en MMLU.</i></figcaption>
                         </figure>
 
-                        En este benchmark también se evaluó la utilidad del instruction finetuning. 
+                        Para este benchmark, LLaMA se queda notablemente por detrás de los mejores modelos, PaLM-540B y Chinchilla-70B. Esta diferencia se puede atribuir al dataset de entrenamiento de LLaMA, que contiene ejemplos limitados de libros relacionados con la ciencia y artículos académicos. Gopher, Chinchilla y PaLM, en cambio, utilizan un conjunto mucho más extenso de estos. Aún así, los resultados obtenidos por LLaMA en comparación a modelos de similar tamaño e incluso mayor como GPT-3 y Gopher son considerablmente mejores.
+
+                        En este benchmark también se evaluó la utilidad del instruction finetuning, comparando los resultados antes y después del uso de dicha técnica. 
 
                         <figure>
                             <img src="imgs/instruction-finetuning.png" alt="Resultados en MMLU con Instruction Finetuning">
@@ -237,6 +248,8 @@
                             <img src="imgs/realtoxicityprompts.png" alt="Resultados en RealToxicityPrompts">
                             <figcaption><i>Fig. 10: Resultados en RealToxicityPrompts.</i></figcaption>
                         </figure>
+
+                        En este caso, la columna "Respectful" hace referencia a prompts que indican al modelo que complete las frases de forma educada y con respeto, mientras que en "Basic" los prompts no tenían esta indicación. Los resultados están en un rango de 0 (no tóxico) a 1 (tóxico). Los resultados obtenidos por los modelos son similares a los que se pueden ver en la literatura. Cabe destacar que el modelo con mayor número de parámetros es el que tiende a generar más toxicidad en sus respuestas.
                     </p>
 
                     <h4>CrowS-Pairs</h4>
@@ -247,16 +260,20 @@
                             <img src="imgs/crows-pairs.png" alt="Resultados en CrowS-Pairs">
                             <figcaption><i>Fig. 11: Resultados en CrowS-Pairs.</i></figcaption>
                         </figure>
+
+                        En este benchmark, LLaMA obtiene mejores resultados que ambos modelos de media, siendo claramente superior en las categorías de raza y discapacidad. Aún así, parece mostrar problemas especialmente en la categoría de religión.
                     </p>
 
                     <h4>WinoGender</h4>
                     <p>
-                        Este benchmark se centra en evaluar el sesgo del modelo en la categoría de género. Para evaluarlo, los ejemplos están compuestos por frases con una ocupación, un participante y un pronombre de un género determinado. Esto se le proporciona al modelo y se le solicita que identifique a cuál de las dos personas se refiere el pronombre.  
+                        Este benchmark se centra en evaluar el sesgo del modelo en la categoría de género. Para evaluarlo, los ejemplos están compuestos por frases con una profesión, un participante y un pronombre de un género determinado. Esto se le proporciona al modelo y se le solicita que identifique a cuál de las dos personas se refiere el pronombre.  
 
                         <figure>
                             <img src="imgs/winogender.png" alt="Resultados en WinoGender">
                             <figcaption><i>Fig. 12: Resultados en WinoGender.</i></figcaption>
                         </figure>
+
+                        Al igual que otros modelos, LLaMA obtiene mejores resultados para la categoría de pronombres neutros <i>their/them/someone</i> comparado con las otras dos, indicando un sesgo de género. Esto está causado probablemente por la inferencia del modelo, que utiliza el género mayoritario en las profesiones para elaborar sus respuestas. Esto se confirma en los ejemplos de "gotcha", que son ejemplos en los que el pronombre no coincide con el género mayoritario de la profesión. 
                     </p>
 
                     <h4>TruthfulQA</h4>
@@ -267,6 +284,8 @@
                             <img src="imgs/truthfulqa.png" alt="Resultados en TruthfulQA">
                             <figcaption><i>Fig. 12: Resultados en TruthfulQA.</i></figcaption>
                         </figure>
+
+                        Aunque los resultados obtenidos son mejores que GPT-3, siguen siendo muy bajos. Esto indica que el modelo es muy propenso a "alucinar" respuestas como verdaderas cuando no lo son.
                     </p>
             </article>
 
@@ -279,6 +298,8 @@
                         <img src="imgs/huella-carbono.png" alt="Huella de Carbono en entrenamiento para distintos modelos">
                         <figcaption><i>Fig. 13: Comparación de huella de carbono para el entrenamiento de distintos modelos.</i></figcaption>
                     </figure>
+
+                    En la comparación con otros modelos se pueda apreciar como el entrenamiento con una mayor cantidad de datos provoca que LLaMA-65B genere emisiones equiparables a modelos mucho más grandes.
                 </p>
             </article>
         </section>

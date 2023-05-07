@@ -31,20 +31,23 @@
                     Los modelos de lenguaje grandes, como GPT-4, han mostrado un rendimiento impresionante en una amplia gama de tareas de procesamiento del lenguaje natural (NLP) y han transformado la forma en que las aplicaciones basadas en inteligencia artificial interactúan con los datos y las personas. Estos modelos de lenguaje, entrenados con enfoques de aprendizaje supervisado y auto-supervisado, han demostrado su capacidad para generar texto coherente y realizar razonamiento de sentido común, traducción automática, resumen de texto, generación de código y muchas otras tareas.
                 </p>
                 <p>
-                    A pesar del éxito de los modelos de lenguaje grandes, tienen limitaciones importantes. En primer lugar, su adaptabilidad en tiempo real es limitada, ya que requieren una cantidad significativa de datos y tiempo de entrenamiento para aprender y ajustarse a nuevas tareas. En segundo lugar, los modelos de lenguaje grandes tienden a no generalizar bien a partir de pocas muestras, lo que significa que su rendimiento en tareas con pocos datos puede ser deficiente. Además, la mayoría de los modelos de lenguaje de gran escala son de código cerrado, lo que dificulta la investigación y la colaboración en la comunidad científica.
+                    A pesar del éxito de los modelos de lenguaje grandes, tienen limitaciones importantes. En primer lugar, su adaptabilidad en tiempo real es limitada, ya que requieren una cantidad significativa de datos y tiempo de entrenamiento para aprender y ajustarse a nuevas tareas. También, con el crecimiento del tamaño de los modelos es cada vez más difícil la ejecución de los mismos en cuanto a tiempos de cómputo. Además, la mayoría de los modelos de lenguaje de gran escala son de código cerrado, lo que dificulta la investigación y la colaboración en la comunidad científica.
                 </p>
             </article>
             <article id="objetivos">
                 <h3>Objetivos</h3>
                 <p>
-                    LLaMA (Large Language Model Meta AI) es un modelo de lenguaje desarrollado para abordar las limitaciones de los modelos de lenguaje grandes actuales y mejorar su capacidad para adaptarse rápidamente a nuevas tareas con pocos datos. El principal objetivo de LLaMA es utilizar la metaprendizaje, un enfoque de aprendizaje que permite a los modelos aprender cómo aprender, para mejorar la adaptabilidad en tiempo real y la generalización a partir de pocas muestras. LLaMA se basa en la arquitectura GPT-4 y utiliza un enfoque de ajuste de instrucción para adaptarse a nuevas tareas en tiempo real.
-                </p>
-                <p>
-                    Además de mejorar la adaptabilidad y la generalización, LLaMA tiene como objetivo ser un modelo de código abierto. Esto significa que el código fuente y los detalles de implementación están disponibles para la comunidad de investigadores, lo que permite a los científicos colaborar en el desarrollo del modelo, probar nuevas ideas y aplicar los conocimientos adquiridos en sus propias investigaciones y proyectos. La apertura de LLaMA también tiene el potencial de impulsar la innovación en aplicaciones de inteligencia artificial y mejorar la transparencia y la responsabilidad en la investigación en inteligencia artificial.
+                    LLaMA (Large Language Model Meta AI) es un conjunto de modelos de lenguaje desarrollado para abordar las limitaciones de los modelos de lenguaje grandes actuales. Esto lo hace a través de dos características principales:
+
+                    <ul>
+                        <li><b>Datasets abiertos:</b> para el entrenamiento de los modelos solo se utilizan datos accesibles al público, ayudando a democratizar el acceso y estudio de los LLMs, y haciéndolo compatible con open-sourcing.</li>
+                        <li><b>Optimización de los modelos en función del inference budget:</b> en vez de buscar construir un modelo de gran tamaño para obtener mejores resultados, LLaMA se concentra en entrenar modelos más pequeños con más datos. De esta forma se pueden obtener resultados similares reduciendo notablemente el inference budget, tanto en memoria como tiempo de ejecución. Como comparación, el modelo GPT-3 posee 175 mil millones de parámetros, suponiendo alrededor de 700GB en memoria RAM solo para almacenar la configuración de la red. El modelo más grande propuesto por LLaMA solo posee 65 mil millones de parámetros. </li>
+                    </ul>
                 </p>
             </article>
         </section>        
         <section id="contexto-actual">
+            <!-- TODO: revisar y corregir -->
             <h2>Contexto actual</h2>
             <article id="llm">
                 <h3>LLM</h3>

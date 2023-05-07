@@ -96,10 +96,13 @@
             <article id="arquitectura">
                 <h3>Arquitectura</h3>
                 <p>
-                    La arquitectura de LLaMA se basa en GPT-4, un modelo de lenguaje grande que utiliza una arquitectura de transformador. GPT-4 se entrena para predecir la siguiente palabra en una secuencia de texto, lo que le permite aprender representaciones ricas de lenguaje natural. LLaMA añade una capa adicional de metaprendizaje a esta arquitectura, permitiendo al modelo adaptarse rápidamente a nuevas tareas con pocos datos de entrenamiento.
-                </p>
-                <p>
-                    El metaprendizaje en LLaMA se realiza mediante ajuste de instrucción, que permite al modelo aprender cómo responder de manera óptima a un conjunto de instrucciones específicas. Las instrucciones se proporcionan en forma de pares de preguntas-respuestas, donde la pregunta proporciona una instrucción para la tarea a realizar y la respuesta proporciona la salida esperada del modelo. Esta capacidad de aprender a partir de instrucciones permite a LLaMA adaptarse rápidamente a nuevas tareas y dominios de conocimiento.
+                    Al igual que la mayoría de los grandes modelos de lenguaje actuales, la arquitectura de LLaMA se basa en un transformador. A esta arquitectura original se le aplican varias modificaciones para optimizarla, proviententes de distintos origenes:
+
+                    <ul>
+                        <li>Pre-normalización (GPT3): en vez de normalizar la salida, se normalizan las entradas de cada sub-capa del transformador.</li>
+                        <li>SwiGLU (PaLM): la función de activación ReLU se sustituye por la SwiGLU, para mejorar el rendimiento de la red.</li>
+                        <li>Embeddings rotatorios (GPTNeo): los embeddings de posición absoluta propuestos en la arquitectura original se sustituyen por Rotary Positional Embeddings (RoPE) en cada capa de la red. </li>
+                    </ul>
                 </p>
             </article>
             <article id="implementacion">

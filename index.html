@@ -185,14 +185,33 @@
             <article id="bias">
                 <h3>Bias, Toxicidad y Desinformación</h3>
                 <p>
-                    
+                    Debido a que gran parte del contenido de entrenamiento del modelo se obtiene de la Web, se evaluó también usando métricas de generación de contenido tóxico y detección de estereotipos para poder observar el posible daño que podría causar el modelo.  
                 </p>
+                    <h4>RealToxicityPrompts</h4>
+                    <p>
+                        Este benchmark contiene alrededor de 100k prompts que deben ser completadas por el modelo. Las respuestas son evaluadas entonces con un toxicity score a través de PerspectiveAPI, una plataforma que usa machine learning para la deteción de comentarios y contenido tóxico. 
+                    </p>
+
+                    <h4>CrowS-Pairs</h4>
+                    <p>
+                        Este dataset permite evaluar el sesgo del modelo en diversas categorías: género, religión, raza, orientación sexual, edad, nacionalidad, discapacidad, apariencia física y estatus socioeconómico. Para ello cada ejemplo tiene opción estereotípica y otra anti-estereotípica, y se evalua la preferencia del modelo por la primera.  
+                    </p>
+
+                    <h4>WinoGender</h4>
+                    <p>
+                        Este benchmark se centra en evaluar el sesgo del modelo en la categoría de género. Para evaluarlo, los ejemplos están compuestos por frases con una ocupación, un participante y un pronombre de un género determinado. Esto se le proporciona al modelo y se le solicita que identifique a cuál de las dos personas se refiere el pronombre.  
+                    </p>
+
+                    <h4>TruthfulQA</h4>
+                    <p>
+                        Con este benchmark se evalua la capacidad del modelo de detección de desinformación, comprobando su capacidad para determinar si algo es verdadero o no.  
+                    </p>
             </article>
 
             <article id="carbon">
                 <h3>Huella de Carbono</h3>
                 <p>
-                    
+                    Debido al tamaño y la cantidad de energía utilizada durante el entrenamiento de estos grandes modelos de inteligencia artificial, la huella de carbono es cada vez un aspecto más relevante en la evaluación de estos modelos. En el caso de los modelos <i>LLaMA</i>, se estima que las emisiones causadas por el entrenamiento son equivalentes a 1015 tC02eq (toneladas de carbono emitido). 
                 </p>
             </article>
         </section>

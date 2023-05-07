@@ -139,34 +139,49 @@
                     <h4>Razonamiento de Sentido Común</h4>
                     <p>
                         Se utilizaron benchmarks de BoolQ, PIQA, SIQA, HellaSwag, WinoGrande, ARC y OpenBookQA. Incluyen tanto tareas como preguntas multi-repuesta.
+
+                        <img src="imgs/razonamiento-sentido-comun.png">
                     </p>
 
                     <h4>Preguntas a Libro Cerrado</h4>
                     <p>
                         Se utilizaron benchmarks de Natural Questions y TriviaQA. Al ser preguntas a libro cerrado, los modelos no tienen acceso a documentos que contengan evidencia de las respuestas a las preguntas. 
+
+                        <img src="imgs/natural-questions.png">
+                        
+                        <img src="imgs/triviaqa.png">
                     </p>
 
                     <h4>Comprensión Lectora</h4>
                     <p>
                         Se utilizaron benchmarks de RACE, que contiene preguntas de comprensión lectora para alumnos de instituto.
+
+                        <img src="imgs/comprension-lectora.png">
                     </p>
 
                     <h4>Razonamiento Matemático</h4>
                     <p>
                         Se utilizaron benchmarks de MATH y GSM8k, que contienen preguntas de razonamiento matemático orientadas a alumnos de instituto.
+
+                        <img src="imgs/razonamiento-matematico.png">
                     </p>
 
                     <h4>Generación de Código</h4>
                     <p>
                         Se utilizaron benchmarks de HumanEval y MBPP. En estas tareas el modelo recibe una descripción del programa a realizar y ejemplos de entradas y salidas del programa. El modelo tiene entonces que generar código Python que pase todos los casos de test del problema. 
+
+                        <img src="imgs/generacion-codigo.png">
                     </p>
 
                     <h4>Massive Multitask Language Understanding (MMLU)</h4>
                     <p>
                         El benchmark MMLU contiene conjuntos de preguntas multi-respuesta sobre una variedad de temas. 
-
+                        
+                        <img src="imgs/mmlu.png">
 
                         En este benchmark también se evaluó la utilidad del instruction finetuning. 
+
+                        <img src="imgs/instruction-finetuning.png">
                     </p>
 
                 <p>
@@ -190,21 +205,29 @@
                     <h4>RealToxicityPrompts</h4>
                     <p>
                         Este benchmark contiene alrededor de 100k prompts que deben ser completadas por el modelo. Las respuestas son evaluadas entonces con un toxicity score a través de PerspectiveAPI, una plataforma que usa machine learning para la deteción de comentarios y contenido tóxico. 
+
+                        <img src="imgs/realtoxicityprompts.png">
                     </p>
 
                     <h4>CrowS-Pairs</h4>
                     <p>
                         Este dataset permite evaluar el sesgo del modelo en diversas categorías: género, religión, raza, orientación sexual, edad, nacionalidad, discapacidad, apariencia física y estatus socioeconómico. Para ello cada ejemplo tiene opción estereotípica y otra anti-estereotípica, y se evalua la preferencia del modelo por la primera.  
+
+                        <img src="imgs/crows-pairs.png">
                     </p>
 
                     <h4>WinoGender</h4>
                     <p>
                         Este benchmark se centra en evaluar el sesgo del modelo en la categoría de género. Para evaluarlo, los ejemplos están compuestos por frases con una ocupación, un participante y un pronombre de un género determinado. Esto se le proporciona al modelo y se le solicita que identifique a cuál de las dos personas se refiere el pronombre.  
+
+                        <img src="imgs/winogender.png">
                     </p>
 
                     <h4>TruthfulQA</h4>
                     <p>
                         Con este benchmark se evalua la capacidad del modelo de detección de desinformación, comprobando su capacidad para determinar si algo es verdadero o no.  
+
+                        <img src="imgs/truthfulqa.png">
                     </p>
             </article>
 
@@ -212,6 +235,8 @@
                 <h3>Huella de Carbono</h3>
                 <p>
                     Debido al tamaño y la cantidad de energía utilizada durante el entrenamiento de estos grandes modelos de inteligencia artificial, la huella de carbono es cada vez un aspecto más relevante en la evaluación de estos modelos. En el caso de los modelos <i>LLaMA</i>, se estima que las emisiones causadas por el entrenamiento son equivalentes a 1015 tC02eq (toneladas de carbono emitido). 
+
+                    <img src="imgs/huella-carbono.png">
                 </p>
             </article>
         </section>

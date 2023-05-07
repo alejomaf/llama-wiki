@@ -20,12 +20,15 @@ La wiki se basa en el artículo científico de Meta: https://arxiv.org/pdf/2302.
 4. Evaluación experimental
    - Métricas de evaluación
    - Resultados y comparaciones
-5. Aplicaciones
+5. Otras consideraciones
+   - Bias, Toxicidad y Desinformación
+   - Huella de Carbono
+6. Aplicaciones
    - Aplicación en robótica
    - Aplicación en salud (ChatDoctor)
    - Aplicación en enseñanza
    - Aplicación en vida cotidiana
-6. Conclusiones y trabajos futuros
+7. Conclusiones y trabajos futuros
    - Limitaciones y posibles mejoras
    - Open Source LLMs
    - Direcciones futuras de investigación

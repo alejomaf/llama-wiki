@@ -109,6 +109,11 @@
                         <li><b>Embeddings rotatorios (GPTNeo)</b>: los embeddings de posición absoluta propuestos en la arquitectura original se sustituyen por Rotary Positional Embeddings (RoPE) en cada capa de la red. </li>
                     </ul>
                 </p>
+
+                <figure>
+                    <img src="imgs/arquitecturas.png" alt="Configuraciones de LLaMA">
+                    <figcaption><i>Fig. 1: Modelos disponibles de LLaMA.</i></figcaption>
+                </figure>
             </article>
             <article id="implementacion">
                 <h3>Implementación</h3>
@@ -143,56 +148,74 @@
                     <p>
                         Se utilizaron benchmarks de BoolQ, PIQA, SIQA, HellaSwag, WinoGrande, ARC y OpenBookQA. Incluyen tanto tareas como preguntas multi-repuesta.
 
-                        <img src="imgs/razonamiento-sentido-comun.png">
+                        <figure>
+                            <img src="imgs/razonamiento-sentido-comun.png" alt="Resultados Razonamiento Sentido Común">
+                            <figcaption><i>Fig. 2: Resultados en tareas de Razonamiento de Sentido Común.</i></figcaption>
+                        </figure>
+
+                        LLaMA consigue el mejor rendimiento en zero-shot en todos los benchmarks excepto BoolQ y WinoGrande.  
                     </p>
 
                     <h4>Preguntas a Libro Cerrado</h4>
                     <p>
                         Se utilizaron benchmarks de Natural Questions y TriviaQA. Al ser preguntas a libro cerrado, los modelos no tienen acceso a documentos que contengan evidencia de las respuestas a las preguntas. 
 
-                        <img src="imgs/natural-questions.png">
-                        
-                        <img src="imgs/triviaqa.png">
+                        <figure>
+                            <img src="imgs/natural-questions.png" alt="Resultados en NaturalQuestions">
+                            <figcaption><i>Fig. 3: Resultados en NaturalQuestion.</i></figcaption>
+                        </figure>
+                        <figure>
+                            <img src="imgs/triviaqa.png" alt="Resultados en TriviaQA">
+                            <figcaption><i>Fig. 4: Resultados en TriviaQA.</i></figcaption>
+                        </figure>
                     </p>
 
                     <h4>Comprensión Lectora</h4>
                     <p>
                         Se utilizaron benchmarks de RACE, que contiene preguntas de comprensión lectora para alumnos de instituto.
 
-                        <img src="imgs/comprension-lectora.png">
+                        <figure>
+                            <img src="imgs/comprension-lectora.png" alt="Resultados en Comprensión Lectora">
+                            <figcaption><i>Fig. 5: Resultados en Comprensión Lectora.</i></figcaption>
+                        </figure>
                     </p>
 
                     <h4>Razonamiento Matemático</h4>
                     <p>
                         Se utilizaron benchmarks de MATH y GSM8k, que contienen preguntas de razonamiento matemático orientadas a alumnos de instituto.
 
-                        <img src="imgs/razonamiento-matematico.png">
+                        <figure>
+                            <img src="imgs/razonamiento-matematico.png" alt="Resultados en Razonamiento Matemático">
+                            <figcaption><i>Fig. 6: Resultados en Razonamiento Matemático.</i></figcaption>
+                        </figure>
                     </p>
 
                     <h4>Generación de Código</h4>
                     <p>
                         Se utilizaron benchmarks de HumanEval y MBPP. En estas tareas el modelo recibe una descripción del programa a realizar y ejemplos de entradas y salidas del programa. El modelo tiene entonces que generar código Python que pase todos los casos de test del problema. 
 
-                        <img src="imgs/generacion-codigo.png">
+                        <figure>
+                            <img src="imgs/generacion-codigo.png" alt="Resultados en Generación de Código">
+                            <figcaption><i>Fig. 7: Resultados en Generación de Código.</i></figcaption>
+                        </figure>
                     </p>
 
                     <h4>Massive Multitask Language Understanding (MMLU)</h4>
                     <p>
                         El benchmark MMLU contiene conjuntos de preguntas multi-respuesta sobre una variedad de temas. 
-                        
-                        <img src="imgs/mmlu.png">
+
+                        <figure>
+                            <img src="imgs/mmlu.png" alt="Resultados en MMLU">
+                            <figcaption><i>Fig. 8: Resultados en MMLU.</i></figcaption>
+                        </figure>
 
                         En este benchmark también se evaluó la utilidad del instruction finetuning. 
 
-                        <img src="imgs/instruction-finetuning.png">
+                        <figure>
+                            <img src="imgs/instruction-finetuning.png" alt="Resultados en MMLU con Instruction Finetuning">
+                            <figcaption><i>Fig. 9: Resultados en MMLU con Instruction Finetuning.</i></figcaption>
+                        </figure>
                     </p>
-
-                <p>
-                    LLaMA demuestra un rendimiento sólido en una amplia gama de tareas y dominios, superando a otros modelos de lenguaje a gran escala. Estas mejoras en el rendimiento se deben en gran parte a la capacidad de LLaMA para adaptarse rápidamente a nuevas tareas y dominios mediante el ajuste de instrucción y el metaprendizaje.
-                </p>
-                <p>
-                    En comparación con otros modelos de lenguaje a gran escala, como GPT-4, LLaMA también demuestra una mayor robustez frente a las instrucciones ambiguas o poco claras. Gracias a su enfoque en el ajuste de instrucción y el metaprendizaje, LLaMA es capaz de generar respuestas más coherentes y útiles en situaciones en las que otros modelos podrían tener dificultades para comprender la intención del usuario o proporcionar información relevante.
-                </p>
                 <p>
                     Los resultados obtenidos en la evaluación experimental de LLaMA no solo destacan el potencial del modelo en una amplia variedad de aplicaciones, sino que también proporcionan información valiosa sobre las áreas en las que se pueden realizar mejoras futuras. Al analizar el rendimiento de LLaMA en diferentes tareas y dominios, los investigadores pueden identificar las limitaciones del modelo y desarrollar enfoques innovadores para abordar estas limitaciones y mejorar aún más el rendimiento de <i>LLaMA</i> en el futuro.
                 </p>
@@ -201,6 +224,7 @@
         <section id="consideraciones">
             <h2>Otras consideraciones</h2>
             <article id="bias">
+                <!-- TODO: comentar resultados -->
                 <h3>Bias, Toxicidad y Desinformación</h3>
                 <p>
                     Debido a que gran parte del contenido de entrenamiento del modelo se obtiene de la Web, se evaluó también usando métricas de generación de contenido tóxico y detección de estereotipos para poder observar el posible daño que podría causar el modelo.  
@@ -209,28 +233,40 @@
                     <p>
                         Este benchmark contiene alrededor de 100k prompts que deben ser completadas por el modelo. Las respuestas son evaluadas entonces con un toxicity score a través de PerspectiveAPI, una plataforma que usa machine learning para la deteción de comentarios y contenido tóxico. 
 
-                        <img src="imgs/realtoxicityprompts.png">
+                        <figure>
+                            <img src="imgs/realtoxicityprompts.png" alt="Resultados en RealToxicityPrompts">
+                            <figcaption><i>Fig. 10: Resultados en RealToxicityPrompts.</i></figcaption>
+                        </figure>
                     </p>
 
                     <h4>CrowS-Pairs</h4>
                     <p>
                         Este dataset permite evaluar el sesgo del modelo en diversas categorías: género, religión, raza, orientación sexual, edad, nacionalidad, discapacidad, apariencia física y estatus socioeconómico. Para ello cada ejemplo tiene opción estereotípica y otra anti-estereotípica, y se evalua la preferencia del modelo por la primera.  
 
-                        <img src="imgs/crows-pairs.png">
+                        <figure>
+                            <img src="imgs/crows-pairs.png" alt="Resultados en CrowS-Pairs">
+                            <figcaption><i>Fig. 11: Resultados en CrowS-Pairs.</i></figcaption>
+                        </figure>
                     </p>
 
                     <h4>WinoGender</h4>
                     <p>
                         Este benchmark se centra en evaluar el sesgo del modelo en la categoría de género. Para evaluarlo, los ejemplos están compuestos por frases con una ocupación, un participante y un pronombre de un género determinado. Esto se le proporciona al modelo y se le solicita que identifique a cuál de las dos personas se refiere el pronombre.  
 
-                        <img src="imgs/winogender.png">
+                        <figure>
+                            <img src="imgs/winogender.png" alt="Resultados en WinoGender">
+                            <figcaption><i>Fig. 12: Resultados en WinoGender.</i></figcaption>
+                        </figure>
                     </p>
 
                     <h4>TruthfulQA</h4>
                     <p>
                         Con este benchmark se evalua la capacidad del modelo de detección de desinformación, comprobando su capacidad para determinar si algo es verdadero o no.  
 
-                        <img src="imgs/truthfulqa.png">
+                        <figure>
+                            <img src="imgs/truthfulqa.png" alt="Resultados en TruthfulQA">
+                            <figcaption><i>Fig. 12: Resultados en TruthfulQA.</i></figcaption>
+                        </figure>
                     </p>
             </article>
 
@@ -239,7 +275,10 @@
                 <p>
                     Debido al tamaño y la cantidad de energía utilizada durante el entrenamiento de estos grandes modelos de inteligencia artificial, la huella de carbono es cada vez un aspecto más relevante en la evaluación de estos modelos. En el caso de los modelos <i>LLaMA</i>, se estima que las emisiones causadas por el entrenamiento son equivalentes a 1015 tC02eq (toneladas de carbono emitido). 
 
-                    <img src="imgs/huella-carbono.png">
+                    <figure>
+                        <img src="imgs/huella-carbono.png" alt="Huella de Carbono en entrenamiento para distintos modelos">
+                        <figcaption><i>Fig. 13: Comparación de huella de carbono para el entrenamiento de distintos modelos.</i></figcaption>
+                    </figure>
                 </p>
             </article>
         </section>

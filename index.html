@@ -78,10 +78,19 @@
             <article id="dataset">
                 <h3>Dataset</h3>
                 <p>
-                    LLaMA utiliza un conjunto de datos de entrenamiento compuesto por ejemplos de aprendizaje supervisado y auto-supervisado. El aprendizaje supervisado se realiza utilizando pares de preguntas-respuestas, donde la pregunta proporciona una instrucción para la tarea a realizar y la respuesta proporciona la salida esperada del modelo. Estos pares de preguntas-respuestas se generan a partir de diversos recursos, incluyendo la web y otros conjuntos de datos existentes.
+                    Una de las principales características de LLaMA es que su entrenamiento se limita a fuentes de datos públicas compatibles con "open sourcing". El conjunto de datos está compuesto por las siguientes fuentes:
+                    <ul>
+                        <li>English CommonCrawl (67%): repositorio abierto que contiene información obtenida a través de web crawling. De esta fuente se utilizan datos de 2017 a 2020, y son procesados con el pipeline CCNet. Con este procesado se eliminan duplicados a nivel de línea, se realiza identificación de idioma utilizando clasificadores para eliminar contenido no inglés y se filtra el contenido de baja calidad usando modelos de n-gramas.</li>
+                        <li>C4 (15%): dataset ya pre-procesado basado también en CommonCrawl. El procesado es similar al realizado para el anterior dataset con CCNet, pero esta vez el filtrado de calidad se realiza utilizando heurísticas.</li>
+                        <li>Github (4.5%): dataset abierto de Google BigQuery. Para mantenerse en línea con el uso de solo datos accesibles públicamente, solo se utilizan proyectos bajo las licencias de Apache, BSD y MIT. En este caso se eliminan los duplicados a nivel de archivo y el filtrado de calidad se realiza usando heurísticas. También se eliminan partes estructurales de los archivos que no proporcionan información relevante como los headers.</li>
+                        <li>Wikipedia (4.5%): dumps de Wikipedia del periodo Junio-Agosto de 2022, en más de 20 idiomas. Para estandarizar el formato, se eliminan los hyperlinks, comentarios, etc.</li>
+                        <li>Gutenberg y Books3 (4.5%): ambos datasets relacionados con libros disponibles en el dominio público. Los duplicados son eliminados a nivel de libro si existe más de un 90% de coincidencia entre ellos.</li>
+                        <li>ArXiv (2.5%): archivos LaTeX de contenido científico. En el proceso de estandarización se elimina todo antes de la primera sección y la bibliografía, además de los comentarios, definiciones y macros utilizados por el autor.</li>
+                        <li>Stack Exchange (2%): conjuntos de preguntas y respuestas en las 28 páginas más grandes. En la estandarización se elimina toda lo relacionado con el HTML de la página y además se ordenan las preguntas por puntuación.</li>
+                    </ul>
                 </p>
                 <p>
-                    El aprendizaje auto-supervisado, por otro lado, se realiza utilizando textos en lenguaje natural de la web y otros recursos de texto grande. Estos textos se utilizan para preentrenar el modelo en tareas de predicción de palabras y permiten a LLaMA aprender representaciones ricas y útiles de lenguaje natural que se pueden utilizar en una amplia gama de tareas.
+                    Una vez se han procesado y estandarizado todos los textos, estos son tokenizados utilizando una modificación del algoritmo de compresión byte-pair encoding (BPE). Con esto se consigue que las palabras más comunes en el vocabulario sean representadas con un solo token, mientras que las palabras menos comunes estarán compuestas por dos o más tokens. 
                 </p>
             </article>
             <article id="arquitectura">

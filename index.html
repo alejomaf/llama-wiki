@@ -47,7 +47,6 @@
             </article>
         </section>        
         <section id="contexto-actual">
-            <!-- TODO: revisar y corregir -->
             <h2>Contexto actual</h2>
             <article id="llm">
                 <h3>LLM</h3>
@@ -61,10 +60,10 @@
             <article id="instruction-tuning">
                 <h3>Instruction tuning</h3>
                 <p>
-                    El ajuste de instrucción es una técnica que permite adaptar los modelos de lenguaje a gran escala a nuevas tareas utilizando un enfoque de aprendizaje más rápido y eficiente. En lugar de reentrenar el modelo desde cero, se ajustan los pesos de la red neuronal para que responda de manera óptima a un conjunto de instrucciones específicas. Estas instrucciones pueden incluir información sobre la tarea a realizar, la estructura de los datos de entrada y salida, y las restricciones o preferencias específicas del dominio.
+                    El ajuste de instrucción es una técnica que permite adaptar los modelos de lenguaje a gran escala a nuevas tareas utilizando un enfoque de aprendizaje más rápido y eficiente. En lugar de reentrenar el modelo desde cero, el modelo se "entrena" a través de instrucciones en lenguaje natural. Estas instrucciones pueden incluir información sobre la tarea a realizar, la estructura de los datos de entrada y salida, y las restricciones o preferencias específicas del dominio.
                 </p>
                 <p>
-                    El ajuste de instrucción puede mejorar la adaptabilidad en tiempo real de los modelos de lenguaje, permitiendo que aprendan y se ajusten a nuevas tareas de manera más rápida y con menos datos de entrenamiento. También puede mejorar la generalización a partir de pocas muestras, ya que el modelo puede utilizar su conocimiento previo para aprender rápidamente a partir de un conjunto limitado de ejemplos. El ajuste de instrucción es una de las técnicas clave utilizadas en la arquitectura LLaMA para mejorar la adaptabilidad y la generalización de los modelos de lenguaje a gran escala.
+                    El ajuste de instrucción puede mejorar la adaptabilidad en tiempo real de los modelos de lenguaje, permitiendo que aprendan y se ajusten a nuevas tareas de manera más rápida y con menos datos de entrenamiento. También puede mejorar la generalización a partir de pocas muestras, ya que el modelo puede utilizar su conocimiento previo para aprender rápidamente a partir de un conjunto limitado de ejemplos.
                 </p>
             </article>
             <article id="closed-source-llm">
@@ -140,7 +139,6 @@
             </article>
             <article id="resultados-comparaciones">
                 <h3>Resultados y comparaciones</h3>
-                <!-- TODO: poner tablas de resultados y comentarlas -->
                 <p>
                     El modelo se evaluó siguiendo una gran variedad de tareas y problemas, y se comparó con los modelos de lenguaje más prominentes como GPT-3, Gopher, Chinchilla o PaLM. A continuación se listan todas las pruebas.
                 </p>
@@ -235,7 +233,6 @@
         <section id="consideraciones">
             <h2>Otras consideraciones</h2>
             <article id="bias">
-                <!-- TODO: comentar resultados -->
                 <h3>Bias, Toxicidad y Desinformación</h3>
                 <p>
                     Debido a que gran parte del contenido de entrenamiento del modelo se obtiene de la Web, se evaluó también usando métricas de generación de contenido tóxico y detección de estereotipos para poder observar el posible daño que podría causar el modelo.  
@@ -360,7 +357,7 @@
             <article id="limitaciones-mejoras">
                 <h3>Limitaciones y posibles mejoras</h3>
                 <p>
-                    A pesar de las ventajas y el potencial de LLaMA, el modelo presenta ciertas limitaciones que pueden abordarse en trabajos futuros. Una de las limitaciones es su dependencia de la calidad del conjunto de datos de instrucción. Si las instrucciones no son claras o ambiguas, LLaMA puede generar respuestas incoherentes o incorrectas. Para abordar esta limitación, se podrían desarrollar mejores estrategias de preprocesamiento y curación de datos para garantizar que las instrucciones sean claras y específicas.
+                    A pesar de las ventajas y el potencial de LLaMA, el modelo presenta ciertas limitaciones que pueden abordarse en trabajos futuros. Una de las limitaciones es su dependencia de la calidad del conjunto de datos de entrenamiento, como sucede con todos los modelos de inteligencia artificial. Si las instrucciones no son claras o ambiguas, LLaMA puede generar respuestas incoherentes o incorrectas. Para abordar esta limitación, se podrían desarrollar mejores estrategias de preprocesamiento y curación de datos para garantizar que las instrucciones sean claras y específicas.
                 </p>
                 <p>
                     Otra limitación es la escalabilidad del modelo, ya que el entrenamiento de LLaMA en grandes conjuntos de datos puede ser computacionalmente costoso. Investigaciones futuras podrían explorar técnicas de optimización y reducción de la complejidad del modelo para mejorar la eficiencia y permitir su aplicación en una gama más amplia de dominios y tareas.
@@ -396,13 +393,13 @@
             <article id="pregunta1">
                 <h3>1. ¿Qué es LLaMA (Large Language Model Meta AI)?</h3>
                 <p>
-                    LLaMA es un modelo de lenguaje de gran escala desarrollado por OpenAI que utiliza técnicas avanzadas de aprendizaje a partir de pocas muestras para proporcionar respuestas precisas y coherentes a una amplia gama de preguntas e instrucciones. LLaMA combina varias técnicas, como el aprendizaje a partir de pocas muestras y la adaptación del modelo, para mejorar la eficacia de los modelos de lenguaje en diversas tareas y aplicaciones.
+                    LLaMA es una colección de modelos de lenguaje de gran escala desarrollado por Meta. LLaMA presenta varias características principales, como el uso de únicamente datos abiertos al público y la optimización del modelo en función de un inference budget para reducir su tamaño.
                 </p>
             </article>
             <article id="pregunta2">
                 <h3>2. ¿Cuál es la principal diferencia entre LLaMA y otros modelos de lenguaje de gran escala como GPT-3?</h3>
                 <p>
-                    La principal diferencia entre LLaMA y otros modelos de lenguaje de gran escala como GPT-3 es la forma en que LLaMA utiliza el aprendizaje a partir de pocas muestras y la adaptación del modelo para generar respuestas más precisas y coherentes. Mientras que GPT-3 y otros modelos de lenguaje requieren una gran cantidad de datos para entrenar y ajustar sus parámetros, LLaMA puede aprender rápidamente a partir de un número limitado de ejemplos y adaptarse a nuevas tareas y dominios con mayor eficacia.
+                    La principal diferencia entre LLaMA y otros modelos de lenguaje es el uso de grandes cantidades de datos para así poder reducir el tamaño del modelo sin perjudicar a los resultados.
                 </p>
             </article>
             <article id="pregunta3">
@@ -414,19 +411,19 @@
             <article id="pregunta4">
                 <h3>4. ¿Cuáles son las limitaciones de LLaMA y cómo se podrían mejorar en trabajos futuros?</h3>
                 <p>
-                    Algunas limitaciones de LLaMA incluyen su dependencia de la calidad del conjunto de datos de instrucción, la escalabilidad del modelo y el margen de mejora en su rendimiento en ciertas áreas. Para abordar estas limitaciones, los trabajos futuros podrían explorar mejores estrategias de preprocesamiento y curación de datos, técnicas de optimización y reducción de la complejidad del modelo, y la incorporación de conocimientos específicos del dominio o capacidad de razonamiento en el modelo.
+                    Algunas limitaciones de LLaMA incluyen su dependencia de la calidad del conjunto de datos de entrenamiento, la escalabilidad del modelo y el margen de mejora en su rendimiento en ciertas áreas. Para abordar estas limitaciones, los trabajos futuros podrían explorar mejores estrategias de preprocesamiento y curación de datos, técnicas de optimización y reducción de la complejidad del modelo, y la incorporación de conocimientos específicos del dominio o capacidad de razonamiento en el modelo.
                 </p>
             </article
             <article id="pregunta5">
                 <h3>5. ¿Qué es el Instruction Tuning y por qué es importante en LLaMA?</h3>
                 <p>
-                    El Instruction Tuning es una técnica que permite a los modelos de lenguaje aprender a seguir instrucciones de manera más efectiva. En lugar de simplemente predecir la siguiente palabra en una secuencia de texto, el modelo es entrenado para responder de manera adecuada a las instrucciones proporcionadas. Esto es importante en LLaMA porque mejora la capacidad del modelo para adaptarse a nuevas tareas y dominios, permitiéndole generar respuestas más precisas y coherentes a partir de un conjunto limitado de ejemplos.
+                    El ajuste de instrucción es una técnica que permite adaptar los modelos de lenguaje a gran escala a nuevas tareas utilizando un enfoque de aprendizaje más rápido y eficiente. En lugar de reentrenar el modelo desde cero, el modelo se "entrena" a través de instrucciones en lenguaje natural. Estas instrucciones pueden incluir información sobre la tarea a realizar, la estructura de los datos de entrada y salida, y las restricciones o preferencias específicas del dominio.
                 </p>
             </article>
             <article id="pregunta6">
                 <h3>6. ¿Qué métricas de evaluación se utilizan para medir el rendimiento de LLaMA?</h3>
                 <p>
-                    Para evaluar el rendimiento de LLaMA, se utilizan métricas como la Exactitud, el F1 Score y el BLEU Score. La Exactitud mide la proporción de respuestas correctas generadas por el modelo, el F1 Score es una métrica que combina la precisión y la exhaustividad, y el BLEU Score evalúa la calidad de las traducciones generadas por el modelo en comparación con las traducciones de referencia. Estas métricas permiten comparar el rendimiento de LLaMA con otros modelos de lenguaje y evaluar su eficacia en diferentes tareas y aplicaciones.
+                    Para evaluar el rendimiento de LLaMA se han utilizado una gran variedad de benchmarks en distintas áreas del conocimiento, desde comprensión lectora hasta generación de código. Además, para estudiar el sesgo y toxicidad del modelos se han utilizado también benchmarks específicos que evaluan distintos parámetros en estas áreas.
                 </p>
             </article>
             <article id="pregunta7">

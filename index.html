@@ -98,9 +98,8 @@
             </article>
             <article id="arquitectura">
                 <h3>Arquitectura</h3>
-                <!-- TODO: Explicar arquitectura original -->
                 <p>
-                    Al igual que la mayoría de los grandes modelos de lenguaje actuales, la arquitectura de LLaMA se basa en un transformador. A esta arquitectura original se le aplican varias modificaciones para optimizarla, proviententes de distintos origenes:
+                    Al igual que la mayoría de los grandes modelos de lenguaje actuales, la arquitectura de LLaMA se basa en un transformador. Los transformadores siguen una estructura de encoder-decoder autoregresivo, es decir, que su propia salida como entrada. En el encoder, cada capa se divide en dos subcapas, la primera relacionada con el mecanismo de atención y la segunda siendo una simple red feed-forward completamente conectada. El decoder es idéntico, pero posee una subcapa adicional relacionada también con la atención del modelo. A esta arquitectura original se le aplican varias modificaciones para optimizarla, proviententes de distintos origenes:
 
                     <ul>
                         <li><b>Pre-normalización (GPT3)</b>: en vez de normalizar la salida, se normalizan las entradas de cada sub-capa del transformador.</li>

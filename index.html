@@ -16,6 +16,7 @@
             <li><a href="#contexto-actual">Contexto actual</a></li>
             <li><a href="#arquitectura-componentes">LLaMA: Arquitectura y componentes</a></li>
             <li><a href="#evaluacion">Evaluación experimental</a></li>
+            <li><a href="#consideraciones">Otras consideraciones</a></li>
             <li><a href="#aplicaciones">Aplicaciones</a></li>
             <li><a href="#conclusiones">Conclusiones y trabajos futuros</a></li>
             <li><a href="#preguntas">Preguntas</a></li>
@@ -30,16 +31,18 @@
                     Los modelos de lenguaje grandes, como GPT-4, han mostrado un rendimiento impresionante en una amplia gama de tareas de procesamiento del lenguaje natural (NLP) y han transformado la forma en que las aplicaciones basadas en inteligencia artificial interactúan con los datos y las personas. Estos modelos de lenguaje, entrenados con enfoques de aprendizaje supervisado y auto-supervisado, han demostrado su capacidad para generar texto coherente y realizar razonamiento de sentido común, traducción automática, resumen de texto, generación de código y muchas otras tareas.
                 </p>
                 <p>
-                    A pesar del éxito de los modelos de lenguaje grandes, tienen limitaciones importantes. En primer lugar, su adaptabilidad en tiempo real es limitada, ya que requieren una cantidad significativa de datos y tiempo de entrenamiento para aprender y ajustarse a nuevas tareas. En segundo lugar, los modelos de lenguaje grandes tienden a no generalizar bien a partir de pocas muestras, lo que significa que su rendimiento en tareas con pocos datos puede ser deficiente. Además, la mayoría de los modelos de lenguaje de gran escala son de código cerrado, lo que dificulta la investigación y la colaboración en la comunidad científica.
+                    A pesar del éxito de los modelos de lenguaje grandes, tienen limitaciones importantes. En primer lugar, su adaptabilidad en tiempo real es limitada, ya que requieren una cantidad significativa de datos y tiempo de entrenamiento para aprender y ajustarse a nuevas tareas. También, con el crecimiento del tamaño de los modelos es cada vez más difícil la ejecución de los mismos en cuanto a tiempos de cómputo. Además, la mayoría de los modelos de lenguaje de gran escala son de código cerrado, lo que dificulta la investigación y la colaboración en la comunidad científica.
                 </p>
             </article>
             <article id="objetivos">
                 <h3>Objetivos</h3>
                 <p>
-                    LLaMA (Large Language Model Meta AI) es un modelo de lenguaje desarrollado para abordar las limitaciones de los modelos de lenguaje grandes actuales y mejorar su capacidad para adaptarse rápidamente a nuevas tareas con pocos datos. El principal objetivo de LLaMA es utilizar la metaprendizaje, un enfoque de aprendizaje que permite a los modelos aprender cómo aprender, para mejorar la adaptabilidad en tiempo real y la generalización a partir de pocas muestras. LLaMA se basa en la arquitectura GPT-4 y utiliza un enfoque de ajuste de instrucción para adaptarse a nuevas tareas en tiempo real.
-                </p>
-                <p>
-                    Además de mejorar la adaptabilidad y la generalización, LLaMA tiene como objetivo ser un modelo de código abierto. Esto significa que el código fuente y los detalles de implementación están disponibles para la comunidad de investigadores, lo que permite a los científicos colaborar en el desarrollo del modelo, probar nuevas ideas y aplicar los conocimientos adquiridos en sus propias investigaciones y proyectos. La apertura de LLaMA también tiene el potencial de impulsar la innovación en aplicaciones de inteligencia artificial y mejorar la transparencia y la responsabilidad en la investigación en inteligencia artificial.
+                    LLaMA (Large Language Model Meta AI) es un conjunto de modelos de lenguaje desarrollado para abordar las limitaciones de los modelos de lenguaje grandes actuales. Esto lo hace a través de dos características principales:
+
+                    <ul>
+                        <li><b>Datasets abiertos:</b> para el entrenamiento de los modelos solo se utilizan datos accesibles al público, ayudando a democratizar el acceso y estudio de los LLMs, y haciéndolo compatible con open-sourcing.</li>
+                        <li><b>Optimización de los modelos en función del inference budget:</b> en vez de buscar construir un modelo de gran tamaño para obtener mejores resultados, LLaMA se concentra en entrenar modelos más pequeños con más datos. De esta forma se pueden obtener resultados similares reduciendo notablemente el inference budget, tanto en memoria como tiempo de ejecución. Como comparación, el modelo GPT-3 posee 175 mil millones de parámetros, suponiendo alrededor de 700GB en memoria RAM solo para almacenar la configuración de la red. El modelo más grande propuesto por LLaMA solo posee 65 mil millones de parámetros. </li>
+                    </ul>
                 </p>
             </article>
         </section>        
@@ -57,10 +60,10 @@
             <article id="instruction-tuning">
                 <h3>Instruction tuning</h3>
                 <p>
-                    El ajuste de instrucción es una técnica que permite adaptar los modelos de lenguaje a gran escala a nuevas tareas utilizando un enfoque de aprendizaje más rápido y eficiente. En lugar de reentrenar el modelo desde cero, se ajustan los pesos de la red neuronal para que responda de manera óptima a un conjunto de instrucciones específicas. Estas instrucciones pueden incluir información sobre la tarea a realizar, la estructura de los datos de entrada y salida, y las restricciones o preferencias específicas del dominio.
+                    El ajuste de instrucción es una técnica que permite adaptar los modelos de lenguaje a gran escala a nuevas tareas utilizando un enfoque de aprendizaje más rápido y eficiente. En lugar de reentrenar el modelo desde cero, el modelo se "entrena" a través de instrucciones en lenguaje natural. Estas instrucciones pueden incluir información sobre la tarea a realizar, la estructura de los datos de entrada y salida, y las restricciones o preferencias específicas del dominio.
                 </p>
                 <p>
-                    El ajuste de instrucción puede mejorar la adaptabilidad en tiempo real de los modelos de lenguaje, permitiendo que aprendan y se ajusten a nuevas tareas de manera más rápida y con menos datos de entrenamiento. También puede mejorar la generalización a partir de pocas muestras, ya que el modelo puede utilizar su conocimiento previo para aprender rápidamente a partir de un conjunto limitado de ejemplos. El ajuste de instrucción es una de las técnicas clave utilizadas en la arquitectura LLaMA para mejorar la adaptabilidad y la generalización de los modelos de lenguaje a gran escala.
+                    El ajuste de instrucción puede mejorar la adaptabilidad en tiempo real de los modelos de lenguaje, permitiendo que aprendan y se ajusten a nuevas tareas de manera más rápida y con menos datos de entrenamiento. También puede mejorar la generalización a partir de pocas muestras, ya que el modelo puede utilizar su conocimiento previo para aprender rápidamente a partir de un conjunto limitado de ejemplos.
                 </p>
             </article>
             <article id="closed-source-llm">
@@ -78,31 +81,46 @@
             <article id="dataset">
                 <h3>Dataset</h3>
                 <p>
-                    LLaMA utiliza un conjunto de datos de entrenamiento compuesto por ejemplos de aprendizaje supervisado y auto-supervisado. El aprendizaje supervisado se realiza utilizando pares de preguntas-respuestas, donde la pregunta proporciona una instrucción para la tarea a realizar y la respuesta proporciona la salida esperada del modelo. Estos pares de preguntas-respuestas se generan a partir de diversos recursos, incluyendo la web y otros conjuntos de datos existentes.
+                    Una de las principales características de LLaMA es que su entrenamiento se limita a fuentes de datos públicas compatibles con "open sourcing". El conjunto de datos está compuesto por las siguientes fuentes:
+                    <ul>
+                        <li><b>English CommonCrawl (67%)</b>: repositorio abierto que contiene información obtenida a través de web crawling. De esta fuente se utilizan datos de 2017 a 2020, y son procesados con el pipeline CCNet. Con este procesado se eliminan duplicados a nivel de línea, se realiza identificación de idioma utilizando clasificadores para eliminar contenido no inglés y se filtra el contenido de baja calidad usando modelos de n-gramas.</li>
+                        <li><b>C4 (15%)</b>: dataset ya pre-procesado basado también en CommonCrawl. El procesado es similar al realizado para el anterior dataset con CCNet, pero esta vez el filtrado de calidad se realiza utilizando heurísticas.</li>
+                        <li><b>Github (4.5%)</b>: dataset abierto de Google BigQuery. Para mantenerse en línea con el uso de solo datos accesibles públicamente, solo se utilizan proyectos bajo las licencias de Apache, BSD y MIT. En este caso se eliminan los duplicados a nivel de archivo y el filtrado de calidad se realiza usando heurísticas. También se eliminan partes estructurales de los archivos que no proporcionan información relevante como los headers.</li>
+                        <li><b>Wikipedia (4.5%)</b>: dumps de Wikipedia del periodo Junio-Agosto de 2022, en más de 20 idiomas. Para estandarizar el formato, se eliminan los hyperlinks, comentarios, etc.</li>
+                        <li><b>Gutenberg y Books3 (4.5%)</b>: ambos datasets relacionados con libros disponibles en el dominio público. Los duplicados son eliminados a nivel de libro si existe más de un 90% de coincidencia entre ellos.</li>
+                        <li><b>ArXiv (2.5%)</b>: archivos LaTeX de contenido científico. En el proceso de estandarización se elimina todo antes de la primera sección y la bibliografía, además de los comentarios, definiciones y macros utilizados por el autor.</li>
+                        <li><b>Stack Exchange (2%)</b>: conjuntos de preguntas y respuestas en las 28 páginas más grandes. En la estandarización se elimina toda lo relacionado con el HTML de la página y además se ordenan las preguntas por puntuación.</li>
+                    </ul>
                 </p>
                 <p>
-                    El aprendizaje auto-supervisado, por otro lado, se realiza utilizando textos en lenguaje natural de la web y otros recursos de texto grande. Estos textos se utilizan para preentrenar el modelo en tareas de predicción de palabras y permiten a LLaMA aprender representaciones ricas y útiles de lenguaje natural que se pueden utilizar en una amplia gama de tareas.
+                    Una vez se han procesado y estandarizado todos los textos, estos son tokenizados utilizando una modificación del algoritmo de compresión byte-pair encoding (BPE). Con esto se consigue que las palabras más comunes en el vocabulario sean representadas con un solo token, mientras que las palabras menos comunes estarán compuestas por dos o más tokens. 
                 </p>
             </article>
             <article id="arquitectura">
                 <h3>Arquitectura</h3>
                 <p>
-                    La arquitectura de LLaMA se basa en GPT-4, un modelo de lenguaje grande que utiliza una arquitectura de transformador. GPT-4 se entrena para predecir la siguiente palabra en una secuencia de texto, lo que le permite aprender representaciones ricas de lenguaje natural. LLaMA añade una capa adicional de metaprendizaje a esta arquitectura, permitiendo al modelo adaptarse rápidamente a nuevas tareas con pocos datos de entrenamiento.
+                    Al igual que la mayoría de los grandes modelos de lenguaje actuales, la arquitectura de LLaMA se basa en un transformador. Los transformadores siguen una estructura de encoder-decoder autoregresivo, es decir, que su propia salida como entrada. En el encoder, cada capa se divide en dos subcapas, la primera relacionada con el mecanismo de atención y la segunda siendo una simple red feed-forward completamente conectada. El decoder es idéntico, pero posee una subcapa adicional relacionada también con la atención del modelo. A esta arquitectura original se le aplican varias modificaciones para optimizarla, proviententes de distintos origenes:
+
+                    <ul>
+                        <li><b>Pre-normalización (GPT3)</b>: en vez de normalizar la salida, se normalizan las entradas de cada sub-capa del transformador.</li>
+                        <li><b>SwiGLU (PaLM)</b>: la función de activación ReLU se sustituye por la SwiGLU, para mejorar el rendimiento de la red.</li>
+                        <li><b>Embeddings rotatorios (GPTNeo)</b>: los embeddings de posición absoluta propuestos en la arquitectura original se sustituyen por Rotary Positional Embeddings (RoPE) en cada capa de la red. </li>
+                    </ul>
                 </p>
-                <p>
-                    El metaprendizaje en LLaMA se realiza mediante ajuste de instrucción, que permite al modelo aprender cómo responder de manera óptima a un conjunto de instrucciones específicas. Las instrucciones se proporcionan en forma de pares de preguntas-respuestas, donde la pregunta proporciona una instrucción para la tarea a realizar y la respuesta proporciona la salida esperada del modelo. Esta capacidad de aprender a partir de instrucciones permite a LLaMA adaptarse rápidamente a nuevas tareas y dominios de conocimiento.
-                </p>
+
+                <figure>
+                    <img src="imgs/arquitecturas.png" alt="Configuraciones de LLaMA">
+                    <figcaption><i>Fig. 1: Modelos disponibles de LLaMA.</i></figcaption>
+                </figure>
             </article>
             <article id="implementacion">
                 <h3>Implementación</h3>
                 <p>
-                    LLaMA se implementa utilizando bibliotecas y marcos de trabajo populares de aprendizaje profundo, lo que facilita su adopción y uso por parte de la comunidad de investigadores. El modelo se entrena utilizando una combinación de aprendizaje supervisado y auto-supervisado, y se ajusta a nuevas tareas mediante ajuste de instrucción.
+                    Para el entrenamiento del modelo se hace uso del optimizador AdamW, junto con un cosine learning rate schedule. Esto hace que la tasa de aprendizaje pase de muy alta a muy baja rápidamente a medida que avanzan los epochs, para así volver a un valor alto. Este proceso se va repitiendo periódicamente. Se hace también uso de otras técnicas como el weight decay, gradient clipping y warmup steps. 
                 </p>
+
                 <p>
-                    La implementación de LLaMA también incluye medidas para garantizar la privacidad y la seguridad de los datos. Estas medidas incluyen la eliminación de datos sensibles del conjunto de datos de entrenamiento, el uso de técnicas de anonimización para proteger la identidad de los usuarios y la implementación de mecanismos de control de acceso para garantizar que solo los usuarios autorizados puedan interactuar con el modelo. Además, la implementación de LLaMA sigue las mejores prácticas en términos de transparencia y ética en la investigación de inteligencia artificial, lo que incluye compartir el código fuente y los detalles de implementación con la comunidad científica.
-                </p>
-                <p>
-                    Como modelo de código abierto, LLaMA fomenta la colaboración y la innovación en la comunidad de investigadores, permitiendo a los científicos estudiar, comprender y mejorar el modelo. La implementación abierta también facilita la adaptación de LLaMA a una amplia gama de aplicaciones y dominios, incluidos la robótica, la salud, la enseñanza y la vida cotidiana, lo que tiene el potencial de impulsar el desarrollo de aplicaciones de inteligencia artificial más eficientes y eficaces.
+                    En cuanto al software desarrollado para el entrenamiento del modelo, se hace uso de distintas técnicas para hacer la implementación más eficiente. Una de ellas es utilizar una implementación muy eficiente de la multi-head attention, que reduce tanto el uso de memoria como el tiempo de ejecución. También se reducen el número de activaciones calculadas durante el backward pass con el uso de checkpointing. Con esto, se evita siempre que se pueda calcular las activaciones más computacionalmente costosas. Por último se intenta solapar también el cálculo de las activaciones con las comunicaciones entre las GPUs. 
                 </p>
             </article>
         </section>            
@@ -112,22 +130,8 @@
             <article id="metricas-evaluacion">
                 <h3>Métricas de evaluación</h3>
                 <p>
-                    La evaluación de LLaMA se lleva a cabo utilizando diversas métricas que miden la calidad de las respuestas generadas por el modelo y su capacidad para adaptarse a nuevas tareas y dominios. Estas métricas incluyen:
+                    Como es común en la evaluación de modelos de lenguaje, los resultados se obtuvieron realizando tanto zero-shot learning como few-shot learning. En zero-shot, se proporciona al modelo una descripción de la tarea y un ejemplo de test. El modelo debe entonces proporcionar una respuesta u ordenar las respuestas proporcionadas, dependiendo de la tarea. Few-shot es muy parecido, pero se le proporciona también al modelo algunos ejemplos de la tarea.
                 </p>
-                <ul>
-                    <li>
-                        <strong>Precisión:</strong> Mide la proporción de respuestas correctas generadas por el modelo en comparación con las respuestas esperadas. La precisión es una medida importante de la efectividad de un modelo de lenguaje y su capacidad para proporcionar respuestas precisas y útiles.
-                    </li>
-                    <li>
-                        <strong>Recall (Exhaustividad):</strong> Mide la proporción de respuestas relevantes recuperadas por el modelo en comparación con el total de respuestas relevantes posibles. La exhaustividad es una medida importante de la capacidad del modelo para identificar y proporcionar información relevante en una tarea dada.
-                    </li>
-                    <li>
-                        <strong>F1 score:</strong> Combina la precisión y la exhaustividad en una sola métrica, dando una medida general de la calidad y la utilidad de las respuestas generadas por el modelo.
-                    </li>
-                    <li>
-                        <strong>BLEU:</strong> Mide la similitud entre las respuestas generadas por el modelo y las respuestas de referencia, teniendo en cuenta la coincidencia de palabras y frases. BLEU es una métrica comúnmente utilizada en la evaluación de sistemas de traducción automática y generación de texto.
-                    </li>
-                </ul>
                 <p>
                     Estas métricas proporcionan una evaluación cuantitativa del rendimiento de LLaMA en diversas tareas y dominios, y permiten comparaciones con otros modelos de lenguaje a gran escala.
                 </p>
@@ -135,20 +139,166 @@
             <article id="resultados-comparaciones">
                 <h3>Resultados y comparaciones</h3>
                 <p>
-                    LLaMA demuestra un rendimiento sólido en una amplia gama de tareas y dominios, superando a otros modelos de lenguaje a gran escala en términos de precisión, exhaustividad y F1 score. Estas mejoras en el rendimiento se deben en gran parte a la capacidad de LLaMA para adaptarse rápidamente a nuevas tareas y dominios mediante el ajuste de instrucción y el metaprendizaje.
+                    El modelo se evaluó siguiendo una gran variedad de tareas y problemas, y se comparó con los modelos de lenguaje más prominentes como GPT-3, Gopher, Chinchilla o PaLM. A continuación se listan todas las pruebas.
                 </p>
+                    <h4>Razonamiento de Sentido Común</h4>
+                    <p>
+                        Se utilizaron benchmarks de BoolQ, PIQA, SIQA, HellaSwag, WinoGrande, ARC y OpenBookQA. Incluyen tanto tareas como preguntas multi-repuesta.
+
+                        <figure>
+                            <img src="imgs/razonamiento-sentido-comun.png" alt="Resultados Razonamiento Sentido Común">
+                            <figcaption><i>Fig. 2: Resultados en tareas de Razonamiento de Sentido Común.</i></figcaption>
+                        </figure>
+
+                        LLaMA consigue el mejor rendimiento en zero-shot en todos los benchmarks excepto BoolQ y WinoGrande, solo perdiendo contra PaLM-540B. Consistentemente consigue resultados mejores que otros modelos de considerablemente mayor tamaño como GPT-3 (175B) o Gopher-280B.  
+                    </p>
+
+                    <h4>Preguntas a Libro Cerrado</h4>
+                    <p>
+                        Se utilizaron benchmarks de NaturalQuestions y TriviaQA. Al ser preguntas a libro cerrado, los modelos no tienen acceso a documentos que contengan evidencia de las respuestas a las preguntas. 
+
+                        <figure>
+                            <img src="imgs/natural-questions.png" alt="Resultados en NaturalQuestions">
+                            <figcaption><i>Fig. 3: Resultados en NaturalQuestion.</i></figcaption>
+                        </figure>
+                        <figure>
+                            <img src="imgs/triviaqa.png" alt="Resultados en TriviaQA">
+                            <figcaption><i>Fig. 4: Resultados en TriviaQA.</i></figcaption>
+                        </figure>
+
+                        En ambos benchmarks, LLaMA supera al resto de modelos. Cabe destacar también que incluso LLaMA-13B consigue resultados al nivel del estado del arte, pese a ser 5-10x más pequeño. 
+                    </p>
+
+                    <h4>Comprensión Lectora</h4>
+                    <p>
+                        Se utilizaron benchmarks de RACE, que contiene preguntas de comprensión lectora para alumnos de instituto.
+
+                        <figure>
+                            <img src="imgs/comprension-lectora.png" alt="Resultados en Comprensión Lectora">
+                            <figcaption><i>Fig. 5: Resultados en Comprensión Lectora.</i></figcaption>
+                        </figure>
+
+                        En este benchmark LLaMA-65B es competitivo con PaLM-540B, obteniendo resultados similares. Además, LLaMA-13B consigue superar a GPT-3 en ambas pruebas.
+                    </p>
+
+                    <h4>Razonamiento Matemático</h4>
+                    <p>
+                        Se utilizaron benchmarks de MATH y GSM8k, que contienen preguntas de razonamiento matemático orientadas a alumnos de instituto.
+
+                        <figure>
+                            <img src="imgs/razonamiento-matematico.png" alt="Resultados en Razonamiento Matemático">
+                            <figcaption><i>Fig. 6: Resultados en Razonamiento Matemático.</i></figcaption>
+                        </figure>
+
+                        En este caso los resultados se comparan también con Minerva, una serie de modelos PaLM que han sido ajustados (finetuned) en datos matemáticos. LLaMA-65B es capaz de obtener notablemente mejores resultados que PaLM-62B e incluso superar a Minerva-62B en GSM8k usando <i>maj1@k</i> (evaluaciones con majority voting).   
+                    </p>
+
+                    <h4>Generación de Código</h4>
+                    <p>
+                        Se utilizaron benchmarks de HumanEval y MBPP. En estas tareas el modelo recibe una descripción del programa a realizar y ejemplos de entradas y salidas del programa. El modelo tiene entonces que generar código Python que pase todos los casos de test del problema. 
+
+                        <figure>
+                            <img src="imgs/generacion-codigo.png" alt="Resultados en Generación de Código">
+                            <figcaption><i>Fig. 7: Resultados en Generación de Código.</i></figcaption>
+                        </figure>
+
+
+                        De nuevo, LLaMA es capaz de superar a otros modelos de mucho mayor tamaño en casi todas las pruebas. 
+                    </p>
+
+                    <h4>Massive Multitask Language Understanding (MMLU)</h4>
+                    <p>
+                        El benchmark MMLU contiene conjuntos de preguntas multi-respuesta sobre una variedad de temas. 
+
+                        <figure>
+                            <img src="imgs/mmlu.png" alt="Resultados en MMLU">
+                            <figcaption><i>Fig. 8: Resultados en MMLU.</i></figcaption>
+                        </figure>
+
+                        Para este benchmark, LLaMA se queda notablemente por detrás de los mejores modelos, PaLM-540B y Chinchilla-70B. Esta diferencia se puede atribuir al dataset de entrenamiento de LLaMA, que contiene ejemplos limitados de libros relacionados con la ciencia y artículos académicos. Gopher, Chinchilla y PaLM, en cambio, utilizan un conjunto mucho más extenso de estos. Aún así, los resultados obtenidos por LLaMA en comparación a modelos de similar tamaño e incluso mayor como GPT-3 y Gopher son considerablmente mejores.
+
+                        En este benchmark también se evaluó la utilidad del instruction finetuning, comparando los resultados antes y después del uso de dicha técnica. 
+
+                        <figure>
+                            <img src="imgs/instruction-finetuning.png" alt="Resultados en MMLU con Instruction Finetuning">
+                            <figcaption><i>Fig. 9: Resultados en MMLU con Instruction Finetuning.</i></figcaption>
+                        </figure>
+                    </p>
                 <p>
-                    Además, LLaMA muestra una notable capacidad de generalización a partir de pocas muestras, lo que le permite aprender y realizar predicciones precisas con un número limitado de ejemplos de entrenamiento. Esto es especialmente útil en aplicaciones donde los datos de entrenamiento son escasos o difíciles de obtener, y donde es crucial la capacidad de aprender rápidamente a partir de información limitada.
-                </p>
-                <p>
-                    En comparación con otros modelos de lenguaje a gran escala, como GPT-4, LLaMA también demuestra una mayor robustez frente a las instrucciones ambiguas o poco claras. Gracias a su enfoque en el ajuste de instrucción y el metaprendizaje, LLaMA es capaz de generar respuestas más coherentes y útiles en situaciones en las que otros modelos podrían tener dificultades para comprender la intención del usuario o proporcionar información relevante.
-                </p>
-                <p>
-                    Los resultados obtenidos en la evaluación experimental de LLaMA no solo destacan el potencial del modelo en una amplia variedad de aplicaciones, sino que también proporcionan información valiosa sobre las áreas en las que se pueden realizar mejoras futuras. Al analizar el rendimiento de LLaMA en diferentes tareas y dominios, los investigadores pueden identificar las limitaciones del modelo y desarrollar enfoques innovadores para abordar estas limitaciones y mejorar aún más el rendimiento de LLaMA en el futuro.
+                    Los resultados obtenidos en la evaluación experimental de LLaMA no solo destacan el potencial del modelo en una amplia variedad de aplicaciones, sino que también proporcionan información valiosa sobre las áreas en las que se pueden realizar mejoras futuras. Al analizar el rendimiento de LLaMA en diferentes tareas y dominios, los investigadores pueden identificar las limitaciones del modelo y desarrollar enfoques innovadores para abordar estas limitaciones y mejorar aún más el rendimiento de <i>LLaMA</i> en el futuro.
                 </p>
             </article>
         </section>            
-        
+        <section id="consideraciones">
+            <h2>Otras consideraciones</h2>
+            <article id="bias">
+                <h3>Bias, Toxicidad y Desinformación</h3>
+                <p>
+                    Debido a que gran parte del contenido de entrenamiento del modelo se obtiene de la Web, se evaluó también usando métricas de generación de contenido tóxico y detección de estereotipos para poder observar el posible daño que podría causar el modelo.  
+                </p>
+                    <h4>RealToxicityPrompts</h4>
+                    <p>
+                        Este benchmark contiene alrededor de 100k prompts que deben ser completadas por el modelo. Las respuestas son evaluadas entonces con un toxicity score a través de PerspectiveAPI, una plataforma que usa machine learning para la deteción de comentarios y contenido tóxico. 
+
+                        <figure>
+                            <img src="imgs/realtoxicityprompts.png" alt="Resultados en RealToxicityPrompts">
+                            <figcaption><i>Fig. 10: Resultados en RealToxicityPrompts.</i></figcaption>
+                        </figure>
+
+                        En este caso, la columna "Respectful" hace referencia a prompts que indican al modelo que complete las frases de forma educada y con respeto, mientras que en "Basic" los prompts no tenían esta indicación. Los resultados están en un rango de 0 (no tóxico) a 1 (tóxico). Los resultados obtenidos por los modelos son similares a los que se pueden ver en la literatura. Cabe destacar que el modelo con mayor número de parámetros es el que tiende a generar más toxicidad en sus respuestas.
+                    </p>
+
+                    <h4>CrowS-Pairs</h4>
+                    <p>
+                        Este dataset permite evaluar el sesgo del modelo en diversas categorías: género, religión, raza, orientación sexual, edad, nacionalidad, discapacidad, apariencia física y estatus socioeconómico. Para ello cada ejemplo tiene opción estereotípica y otra anti-estereotípica, y se evalua la preferencia del modelo por la primera.  
+
+                        <figure>
+                            <img src="imgs/crows-pairs.png" alt="Resultados en CrowS-Pairs">
+                            <figcaption><i>Fig. 11: Resultados en CrowS-Pairs.</i></figcaption>
+                        </figure>
+
+                        En este benchmark, LLaMA obtiene mejores resultados que ambos modelos de media, siendo claramente superior en las categorías de raza y discapacidad. Aún así, parece mostrar problemas especialmente en la categoría de religión.
+                    </p>
+
+                    <h4>WinoGender</h4>
+                    <p>
+                        Este benchmark se centra en evaluar el sesgo del modelo en la categoría de género. Para evaluarlo, los ejemplos están compuestos por frases con una profesión, un participante y un pronombre de un género determinado. Esto se le proporciona al modelo y se le solicita que identifique a cuál de las dos personas se refiere el pronombre.  
+
+                        <figure>
+                            <img src="imgs/winogender.png" alt="Resultados en WinoGender">
+                            <figcaption><i>Fig. 12: Resultados en WinoGender.</i></figcaption>
+                        </figure>
+
+                        Al igual que otros modelos, LLaMA obtiene mejores resultados para la categoría de pronombres neutros <i>their/them/someone</i> comparado con las otras dos, indicando un sesgo de género. Esto está causado probablemente por la inferencia del modelo, que utiliza el género mayoritario en las profesiones para elaborar sus respuestas. Esto se confirma en los ejemplos de "gotcha", que son ejemplos en los que el pronombre no coincide con el género mayoritario de la profesión. 
+                    </p>
+
+                    <h4>TruthfulQA</h4>
+                    <p>
+                        Con este benchmark se evalua la capacidad del modelo de detección de desinformación, comprobando su capacidad para determinar si algo es verdadero o no.  
+
+                        <figure>
+                            <img src="imgs/truthfulqa.png" alt="Resultados en TruthfulQA">
+                            <figcaption><i>Fig. 12: Resultados en TruthfulQA.</i></figcaption>
+                        </figure>
+
+                        Aunque los resultados obtenidos son mejores que GPT-3, siguen siendo muy bajos. Esto indica que el modelo es muy propenso a "alucinar" respuestas como verdaderas cuando no lo son.
+                    </p>
+            </article>
+
+            <article id="carbon">
+                <h3>Huella de Carbono</h3>
+                <p>
+                    Debido al tamaño y la cantidad de energía utilizada durante el entrenamiento de estos grandes modelos de inteligencia artificial, la huella de carbono es cada vez un aspecto más relevante en la evaluación de estos modelos. En el caso de los modelos <i>LLaMA</i>, se estima que las emisiones causadas por el entrenamiento son equivalentes a 1015 tC02eq (toneladas de carbono emitido). 
+
+                    <figure>
+                        <img src="imgs/huella-carbono.png" alt="Huella de Carbono en entrenamiento para distintos modelos">
+                        <figcaption><i>Fig. 13: Comparación de huella de carbono para el entrenamiento de distintos modelos.</i></figcaption>
+                    </figure>
+
+                    En la comparación con otros modelos se pueda apreciar como el entrenamiento con una mayor cantidad de datos provoca que LLaMA-65B genere emisiones equiparables a modelos mucho más grandes.
+                </p>
+            </article>
+        </section>
         <section id="aplicaciones">
             <h2>Aplicaciones</h2>
             <article id="aplicacion-robotica">
@@ -206,7 +356,7 @@
             <article id="limitaciones-mejoras">
                 <h3>Limitaciones y posibles mejoras</h3>
                 <p>
-                    A pesar de las ventajas y el potencial de LLaMA, el modelo presenta ciertas limitaciones que pueden abordarse en trabajos futuros. Una de las limitaciones es su dependencia de la calidad del conjunto de datos de instrucción. Si las instrucciones no son claras o ambiguas, LLaMA puede generar respuestas incoherentes o incorrectas. Para abordar esta limitación, se podrían desarrollar mejores estrategias de preprocesamiento y curación de datos para garantizar que las instrucciones sean claras y específicas.
+                    A pesar de las ventajas y el potencial de LLaMA, el modelo presenta ciertas limitaciones que pueden abordarse en trabajos futuros. Una de las limitaciones es su dependencia de la calidad del conjunto de datos de entrenamiento, como sucede con todos los modelos de inteligencia artificial. Si las instrucciones no son claras o ambiguas, LLaMA puede generar respuestas incoherentes o incorrectas. Para abordar esta limitación, se podrían desarrollar mejores estrategias de preprocesamiento y curación de datos para garantizar que las instrucciones sean claras y específicas.
                 </p>
                 <p>
                     Otra limitación es la escalabilidad del modelo, ya que el entrenamiento de LLaMA en grandes conjuntos de datos puede ser computacionalmente costoso. Investigaciones futuras podrían explorar técnicas de optimización y reducción de la complejidad del modelo para mejorar la eficiencia y permitir su aplicación en una gama más amplia de dominios y tareas.
@@ -242,13 +392,13 @@
             <article id="pregunta1">
                 <h3>1. ¿Qué es LLaMA (Large Language Model Meta AI)?</h3>
                 <p>
-                    LLaMA es un modelo de lenguaje de gran escala desarrollado por OpenAI que utiliza técnicas avanzadas de aprendizaje a partir de pocas muestras para proporcionar respuestas precisas y coherentes a una amplia gama de preguntas e instrucciones. LLaMA combina varias técnicas, como el aprendizaje a partir de pocas muestras y la adaptación del modelo, para mejorar la eficacia de los modelos de lenguaje en diversas tareas y aplicaciones.
+                    LLaMA es una colección de modelos de lenguaje de gran escala desarrollado por Meta. LLaMA presenta varias características principales, como el uso de únicamente datos abiertos al público y la optimización del modelo en función de un inference budget para reducir su tamaño.
                 </p>
             </article>
             <article id="pregunta2">
                 <h3>2. ¿Cuál es la principal diferencia entre LLaMA y otros modelos de lenguaje de gran escala como GPT-3?</h3>
                 <p>
-                    La principal diferencia entre LLaMA y otros modelos de lenguaje de gran escala como GPT-3 es la forma en que LLaMA utiliza el aprendizaje a partir de pocas muestras y la adaptación del modelo para generar respuestas más precisas y coherentes. Mientras que GPT-3 y otros modelos de lenguaje requieren una gran cantidad de datos para entrenar y ajustar sus parámetros, LLaMA puede aprender rápidamente a partir de un número limitado de ejemplos y adaptarse a nuevas tareas y dominios con mayor eficacia.
+                    La principal diferencia entre LLaMA y otros modelos de lenguaje es el uso de grandes cantidades de datos para así poder reducir el tamaño del modelo sin perjudicar a los resultados.
                 </p>
             </article>
             <article id="pregunta3">
@@ -260,19 +410,19 @@
             <article id="pregunta4">
                 <h3>4. ¿Cuáles son las limitaciones de LLaMA y cómo se podrían mejorar en trabajos futuros?</h3>
                 <p>
-                    Algunas limitaciones de LLaMA incluyen su dependencia de la calidad del conjunto de datos de instrucción, la escalabilidad del modelo y el margen de mejora en su rendimiento en ciertas áreas. Para abordar estas limitaciones, los trabajos futuros podrían explorar mejores estrategias de preprocesamiento y curación de datos, técnicas de optimización y reducción de la complejidad del modelo, y la incorporación de conocimientos específicos del dominio o capacidad de razonamiento en el modelo.
+                    Algunas limitaciones de LLaMA incluyen su dependencia de la calidad del conjunto de datos de entrenamiento, la escalabilidad del modelo y el margen de mejora en su rendimiento en ciertas áreas. Para abordar estas limitaciones, los trabajos futuros podrían explorar mejores estrategias de preprocesamiento y curación de datos, técnicas de optimización y reducción de la complejidad del modelo, y la incorporación de conocimientos específicos del dominio o capacidad de razonamiento en el modelo.
                 </p>
             </article
             <article id="pregunta5">
                 <h3>5. ¿Qué es el Instruction Tuning y por qué es importante en LLaMA?</h3>
                 <p>
-                    El Instruction Tuning es una técnica que permite a los modelos de lenguaje aprender a seguir instrucciones de manera más efectiva. En lugar de simplemente predecir la siguiente palabra en una secuencia de texto, el modelo es entrenado para responder de manera adecuada a las instrucciones proporcionadas. Esto es importante en LLaMA porque mejora la capacidad del modelo para adaptarse a nuevas tareas y dominios, permitiéndole generar respuestas más precisas y coherentes a partir de un conjunto limitado de ejemplos.
+                    El ajuste de instrucción es una técnica que permite adaptar los modelos de lenguaje a gran escala a nuevas tareas utilizando un enfoque de aprendizaje más rápido y eficiente. En lugar de reentrenar el modelo desde cero, el modelo se "entrena" a través de instrucciones en lenguaje natural. Estas instrucciones pueden incluir información sobre la tarea a realizar, la estructura de los datos de entrada y salida, y las restricciones o preferencias específicas del dominio.
                 </p>
             </article>
             <article id="pregunta6">
                 <h3>6. ¿Qué métricas de evaluación se utilizan para medir el rendimiento de LLaMA?</h3>
                 <p>
-                    Para evaluar el rendimiento de LLaMA, se utilizan métricas como la Exactitud, el F1 Score y el BLEU Score. La Exactitud mide la proporción de respuestas correctas generadas por el modelo, el F1 Score es una métrica que combina la precisión y la exhaustividad, y el BLEU Score evalúa la calidad de las traducciones generadas por el modelo en comparación con las traducciones de referencia. Estas métricas permiten comparar el rendimiento de LLaMA con otros modelos de lenguaje y evaluar su eficacia en diferentes tareas y aplicaciones.
+                    Para evaluar el rendimiento de LLaMA se han utilizado una gran variedad de benchmarks en distintas áreas del conocimiento, desde comprensión lectora hasta generación de código. Además, para estudiar el sesgo y toxicidad del modelos se han utilizado también benchmarks específicos que evaluan distintos parámetros en estas áreas.
                 </p>
             </article>
             <article id="pregunta7">
